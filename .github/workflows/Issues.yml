@@ -1,0 +1,17 @@
+name: Issues information
+on:
+  issues:
+    types: [opened, labeled]
+
+jobs:
+  log_issue_details:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log issue details
+        run: |
+          echo "Issue number: ${{ github.event.issue.number }}"
+          echo "Issue title: ${{ github.event.issue.title }}"
+          echo "Action performed: ${{ github.event.action }}"
+          if github.event.label; then
+            echo "Label added: ${{ github.event.label.name }}"
+          fi
